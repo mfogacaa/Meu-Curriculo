@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcelo Fogaça Santos – Controller & Finance Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2e45;
+    --navy-light: #253f5c;
+    --gold: #c9922a;
+    --gold-light: #e0aa50;
+    --cream: #f9f6f0;
+    --white: #ffffff;
+    --gray: #6b7a8d;
+    --gray-light: #e8edf3;
+    --text: #1a2235;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--cream);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13,27,42,0.96);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5vw;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    color: var(--gold-light);
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 100px 5vw 60px;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,146,42,0.15);
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,146,42,0.08);
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,146,42,0.4);
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-subtitle {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 14px 28px;
+    border-radius: 2px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.85);
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 0.9rem;
+    padding: 14px 28px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 1.75rem;
+    border-radius: 2px;
+  }
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+  .stat-label {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 100px 5vw; }
+  .section-header { margin-bottom: 4rem; }
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--navy);
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  .section-divider {
+    width: 48px; height: 2px;
+    background: var(--gold);
+    margin-top: 1rem;
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: #4a5568;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+    font-size: 1.05rem;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .skill-item {
+    padding: 1rem 1.25rem;
+    background: var(--cream);
+    border-left: 2px solid var(--gold);
+    border-radius: 0 2px 2px 0;
+  }
+  .skill-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--navy-mid);
+  }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { background: var(--cream); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  .timeline-item {
+    padding-left: 2.5rem;
+    margin-bottom: 3.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .timeline-period {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .timeline-company {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 0.25rem;
+    font-weight: 400;
+  }
+  .timeline-role {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .timeline-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+  }
+  .achievement {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 0.85rem;
+    font-size: 0.95rem;
+    color: #4a5568;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .achievement::before {
+    content: '→';
+    color: var(--gold);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ─── EDUCATION ─── */
+  #education { background: var(--navy); }
+  #education .section-title { color: var(--white); }
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .edu-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-top: 3px solid var(--gold);
+    padding: 1.75rem;
+    border-radius: 2px;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-top-color: var(--gold-light); }
+  .edu-degree {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+  .edu-institution {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 0.25rem;
+    font-weight: 300;
+  }
+  .edu-year {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── HIGHLIGHTS ─── */
+  #highlights { background: var(--white); }
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .highlight-card {
+    border: 1px solid var(--gray-light);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .highlight-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+  }
+  .highlight-icon {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  .highlight-value {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--navy);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .highlight-desc {
+    font-size: 0.9rem;
+    color: var(--gray);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--navy);
+    text-align: center;
+  }
+  #contact .section-title { color: var(--white); }
+  #contact .section-divider { margin: 1rem auto; }
+  .contact-subtitle {
+    color: rgba(255,255,255,0.55);
+    font-size: 1.05rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: all 0.2s;
+  }
+  .contact-link:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+  .contact-link svg {
+    width: 18px; height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #080f18;
+    padding: 2rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  footer p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    #hero { grid-template-columns: 1fr; padding-top: 90px; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; }
+    .stat-card { flex: 1; min-width: 140px; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Marcelo Fogaça</a>
+  <ul class="nav-links">
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#experience">Experiência</a></li>
+    <li><a href="#highlights">Resultados</a></li>
+    <li><a href="#education">Formação</a></li>
+    <li><a href="#contact">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <span class="hero-tag">Controller · Finanças Corporativas · Logística</span>
+    <h1 class="hero-title">Marcelo<br><em>Fogaça Santos</em></h1>
+    <p class="hero-subtitle">
+      Profissional com quase 20 anos no setor de logística e mais de 13 anos em Controladoria. 
+      Especialista em transformar dados financeiros complexos em decisões estratégicas com impacto real.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#experience">Ver experiência</a>
+      <a class="btn-outline" href="#contact">Entrar em contato</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-number">~20</div>
+      <div class="stat-label">Anos no setor de logística portuária</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">13+</div>
+      <div class="stat-label">Anos em Controladoria e Planejamento Financeiro</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">7</div>
+      <div class="stat-label">Anos em posições de liderança de equipes</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-header">
+        <span class="section-eyebrow">Perfil Profissional</span>
+        <h2 class="section-title">Decisões orientadas por dados, liderança orientada por pessoas.</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="about-text">
+        <p>
+          Atuo com forte presença em temas de governança, auditorias internas e elaboração de relatórios gerenciais 
+          para suporte à alta direção. Minha abordagem une rigor técnico com visão estratégica — sempre com foco em 
+          melhoria contínua dos processos.
+        </p>
+        <p>
+          Tenho atuação direta em precificação de serviços, cálculo de margens de rentabilidade e parcerias com 
+          áreas comerciais. Já conduzi processos de due diligence em M&A e elaborei Business Plans e Planos Plurianuais.
+        </p>
+        <p>
+          Sou reconhecido por criar ambientes de alta performance: minha equipe atingiu um dos melhores resultados 
+          de clima organizacional na avaliação corporativa de 2024.
+        </p>
+      </div>
+    </div>
+    <div>
+      <div class="section-header">
+        <span class="section-eyebrow">Competências</span>
+        <h2 class="section-title" style="font-size: 1.6rem;">Áreas de expertise</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-item"><span>Controladoria</span></div>
+        <div class="skill-item"><span>Planejamento Financeiro</span></div>
+        <div class="skill-item"><span>Orçamento & Forecast</span></div>
+        <div class="skill-item"><span>Análise de Rentabilidade</span></div>
+        <div class="skill-item"><span>ROIC · ICSD · Covenants</span></div>
+        <div class="skill-item"><span>Governança Corporativa</span></div>
+        <div class="skill-item"><span>Gestão de Equipes</span></div>
+        <div class="skill-item"><span>Due Diligence & M&A</span></div>
+        <div class="skill-item"><span>Business Plan</span></div>
+        <div class="skill-item"><span>Logística & Supply Chain</span></div>
+        <div class="skill-item"><span>Relatórios Gerenciais</span></div>
+        <div class="skill-item"><span>Microsoft Office Avançado</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-eyebrow">Trajetória</span>
+    <h2 class="section-title">Experiência Profissional</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-period">11/2023 – 05/2025</div>
+      <div class="timeline-company">Rocha Terminais Portuários e Logística</div>
+      <div class="timeline-role">Gerente de Controladoria (Controller)</div>
+      <div class="timeline-card">
+        <div class="achievement">Participação na elaboração e revisão de mais de 30 normas ou instruções internas, fortalecendo a governança corporativa.</div>
+        <div class="achievement">Implantação de área própria de custos com redução de quase R$ 2 mm nos primeiros 6 meses de operação.</div>
+        <div class="achievement">Redução do gap entre orçado e realizado em mais de 10%, com análise contínua de desvios e ações corretivas.</div>
+        <div class="achievement">Criação de mais de 10 relatórios gerenciais mensais, incluindo apresentações ao Conselho de Acionistas.</div>
+        <div class="achievement">Reestruturação da Controladoria com a criação de business partners, elevando a sinergia entre áreas.</div>
+        <div class="achievement">Liderança estratégica de auditorias de estoque, reduzindo significativamente os desvios físico x sistema.</div>
+        <div class="achievement">Gestão de equipe reconhecida com um dos melhores índices de clima organizacional em 2024.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">02/2022 – 10/2023</div>
+      <div class="timeline-company">Rocha Terminais Portuários e Logística – Unidade RS</div>
+      <div class="timeline-role">Gerente ADM/FIN</div>
+      <div class="timeline-card">
+        <div class="achievement">Renegociação de mais de 20 contratos com fornecedores, gerando redução de ~10% nos custos.</div>
+        <div class="achievement">Impacto positivo de ~15% no custo operacional através de apoio à área operacional e negociação com fornecedores.</div>
+        <div class="achievement">Captura de ao menos 3 contratos comerciais com mais de 80% de market share em parceria com a área comercial.</div>
+        <div class="achievement">Reestruturação do almoxarifado com implantação do 5S, reduzindo gastos com reposição em mais de 20%.</div>
+        <div class="achievement">Ganhos financeiros de ~R$ 1 mm/ano por meio de relacionamento institucional com autoridades portuárias e parceiros.</div>
+        <div class="achievement">Reconhecimento pela autoridade portuária com premiação IDA (Índice de Desempenho Ambiental).</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">02/2020 – 01/2022</div>
+      <div class="timeline-company">Rocha Terminais Portuários e Logística</div>
+      <div class="timeline-role">Coordenador de Controladoria</div>
+      <div class="timeline-card">
+        <div class="achievement">Crescimento de 45% no EBITDA da Companhia no período, com liderança do planejamento financeiro e análise de resultados.</div>
+        <div class="achievement">Acompanhamento de indicadores ROIC, ICSD e covenants, garantindo conformidade contratual e embasamento técnico ao Conselho.</div>
+        <div class="achievement">Elaboração de apresentações para o Conselho de Administração, transformando dados complexos em insights executivos.</div>
+        <div class="achievement">Condução da implementação de automações com inteligência artificial, gerando ganhos em eficiência e acuracidade nas rotinas financeiras.</div>
+        <div class="achievement">Liderança de equipe com estruturação de PDIs e cultura orientada por dados e melhoria contínua.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section id="highlights">
+  <div class="section-header">
+    <span class="section-eyebrow">Impacto</span>
+    <h2 class="section-title">Resultados que falam por si</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="highlights-grid">
+    <div class="highlight-card">
+      <div class="highlight-icon">💰</div>
+      <div class="highlight-value">R$ 2 mm</div>
+      <div class="highlight-desc">Redução de custos nos primeiros 6 meses após implantação de área própria de custos</div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-icon">📈</div>
+      <div class="highlight-value">+45%</div>
+      <div class="highlight-desc">Crescimento no resultado EBITDA da Companhia durante atuação como Coordenador de Controladoria</div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-icon">🎯</div>
+      <div class="highlight-value">+10%</div>
+      <div class="highlight-desc">Redução do gap entre orçamento e realizado com gestão ativa do desvio orçamentário</div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-icon">📋</div>
+      <div class="highlight-value">30+</div>
+      <div class="highlight-desc">Normas e instruções internas elaboradas ou revisadas para fortalecer a governança corporativa</div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-icon">🤝</div>
+      <div class="highlight-value">80%+</div>
+      <div class="highlight-desc">Market share capturado em novos contratos comerciais conquistados com apoio estratégico</div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-icon">🏆</div>
+      <div class="highlight-value">Top 3</div>
+      <div class="highlight-desc">FGV Business Challenge e 2ª posição no ARGo – Alternate Reality Goal e Desafio ESG</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <span class="section-eyebrow">Formação</span>
+    <h2 class="section-title">Educação & Desenvolvimento</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">MBA Executivo em Gestão com Ênfase em Logística e Supply Chain Management</div>
+      <div class="edu-institution">FGV – Fundação Getulio Vargas</div>
+      <div class="edu-year">2024</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Pós-graduação em Administração de Empresas e Sustentabilidade</div>
+      <div class="edu-institution">UNESPAR – Universidade Estadual do Paraná</div>
+      <div class="edu-year">2015</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Bacharel em Ciências Contábeis</div>
+      <div class="edu-institution">UNESPAR – Universidade Estadual do Paraná</div>
+      <div class="edu-year">2013</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Bacharel em Administração</div>
+      <div class="edu-institution">UNESPAR – Universidade Estadual do Paraná</div>
+      <div class="edu-year">2010</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">High Impact Presentations</div>
+      <div class="edu-institution">Dale Carnegie</div>
+      <div class="edu-year">2017</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Oratória: Técnicas para Falar em Público</div>
+      <div class="edu-institution">FGV – Fundação Getulio Vargas</div>
+      <div class="edu-year">2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-eyebrow">Vamos conversar</span>
+    <h2 class="section-title">Entre em Contato</h2>
+    <div class="section-divider"></div>
+  </div>
+  <p class="contact-subtitle">
+    Aberto a novos desafios e conexões profissionais.<br>Localizado em Paranaguá – PR · Disponível para viagens.
+  </p>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:mfogaca.santos@gmail.com">
+      <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      mfogaca.santos@gmail.com
+    </a>
+    <a class="contact-link" href="tel:+5541985039568">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      (41) 9 8503-9568
+    </a>
+    <a class="contact-link" href="https://www.linkedin.com/in/mfogacaa/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      linkedin.com/in/mfogacaa
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Marcelo Fogaça Santos</p>
+  <p>Paranaguá – PR · Brasil</p>
+</footer>
+
+</body>
+</html>
